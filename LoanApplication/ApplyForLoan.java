@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class ApplyForLoan {
     static int loanAmount;
+   static String name;
     static int tenure;
     static final int MINLOANAMOUNT = 50000;
     static final int PERCENTAGE = 100;
@@ -16,6 +17,8 @@ public class ApplyForLoan {
     }
     static String getLoanDetails(){
         Scanner scanner = new Scanner(System.in);
+        System.out.print("What is your name? ");
+        name = scanner.nextLine();
         System.out.print("Loan amount you intent to borrow: ");
         loanAmount = Integer.parseInt(scanner.nextLine());
         System.out.print("How many years would you like the loan for: ");
@@ -28,8 +31,16 @@ public class ApplyForLoan {
        numberOfMonths *= tenure;
         totalPlusInterest = (interestRate * loanAmount) + loanAmount ;
         total = (interestRate* totalPlusInterest) /numberOfMonths;
-       System.out.println("$"+total+" will be paid monthly until $"+ totalPlusInterest+ " has been repaid.");
+       System.out.println("Hi "+name +" you will have to pay $"+total+"monthly until $"+ totalPlusInterest+ " has been repaid.");
        return total;
+    }
+    static void takeLoan(){
+        String loanDecision, sendLoanRequest;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Do you want to take the loan now? \nPlease enter Y or N: ");
+        loanDecision = scanner.nextLine().toUpperCase();
+        sendLoanRequest = (loanDecision.equals("Y")) ? "Loan Application sent" : "Maybe next time" ;
+        System.out.println(sendLoanRequest);
     }
 
 }
